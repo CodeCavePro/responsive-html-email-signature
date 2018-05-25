@@ -77,11 +77,8 @@ gulp.task('scss:compile', function () {
 function getFilenames(path, extension) {
     return fs
         .readdirSync(path)
-        .filter(
-            item =>
-                fs.statSync(Path.join(path, item)).isFile() &&
-                (extension === undefined || Path.extname(item) === extension)
-        )
+        .filter(item => fs.statSync(Path.join(path, item)).isFile() &&
+                (extension === undefined || Path.extname(item) === extension))
         .sort();
 }
 
