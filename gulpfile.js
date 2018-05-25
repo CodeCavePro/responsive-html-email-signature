@@ -61,3 +61,7 @@ gulp.task('scss:compile', function () {
         }))
         .pipe(gulp.dest("css/"));
 });
+
+gulp.task('watch', function () {
+    gulp.watch('scss/**/*.scss', [ 'scss:compile' ]);
+});
