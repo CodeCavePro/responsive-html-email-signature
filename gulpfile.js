@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     inlinesource = require('gulp-inline-source'),
     inlineImages = require('gulp-inline-images'),
     inlineCss = require('gulp-inline-css'),
-    twig = require('gulp-twig');
+    twig = require('gulp-twig'),
+    yaml = require('js-yaml'),
+    fs = require('fs');
 
 gulp.task('default', [ 'html:prettify' ]);
 
@@ -72,38 +74,10 @@ gulp.task('scss:compile', function () {
 });
 
 gulp.task('twig:compile', function () {
+    var email = yaml.safeLoad(fs.readFileSync('./src/email.yml', 'utf8'));
     return gulp.src('./src/email.twig')
         .pipe(twig({
-            data: {
-                message: {
-                    greeting:       '',
-                    body:           '',
-                    goodbye:        '',
-                },
-                person: {
-                    title:          'Mr.',
-                    fullname:       'John Doe',
-                    position:       'CEO',
-                    company:        'Acme LLC',
-                },
-                contacts: {
-                    cell:           '+1(800)0000000',
-                    cell_pretty:    '+1 800 000 00 00',
-                    phone:          '+1(999)111222333',
-                    phone_pretty:   '+1 999 111 222 333',
-                    skype_name:     'acme',
-                },
-                links: {
-                    facebook:       'CodeCavePro',
-                    twitter:        'codecavepro',
-                    google_plus:    '+CodeCavePro',
-                    linkedin:       'codecavepro',
-                    vk:             'codecavepro',
-
-                    website:        'https://codecave.pro',
-                    website_pretty: 'www.codecave.pro',
-                }
-            }
+            data: email
         }))
         .pipe(gulp.dest('./src'));
 });

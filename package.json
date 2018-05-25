@@ -12,6 +12,7 @@
     "gulp-rename": "^1.2.3",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-twig": "^1.2.0"
+    "gulp-twig": "^1.2.0",
+    "js-yaml": "^3.11.0"
   }
 }
