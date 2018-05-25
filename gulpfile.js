@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     inlinesource = require('gulp-inline-source'),
     inlineImages = require('gulp-inline-images'),
-    inlineCss = require('gulp-inline-css');
+    inlineCss = require('gulp-inline-css'),
+    twig = require('gulp-twig');
 
 gulp.task('default', [ 'html:prettify' ]);
 
@@ -38,14 +39,14 @@ gulp.task('html:inline:css', [ 'html:inline:images', 'html:inline:sources' ], fu
 });
 
 // Include base64-encoded images
-gulp.task('html:inline:images', function () {
+gulp.task('html:inline:images', [ 'twig:compile' ], function () {
     return gulp.src('./src/*.html')
         .pipe(inlineImages({/* options */}))
         .pipe(gulp.dest('./'));
 });
 
 // Inline external JavaScript and CSS files
-gulp.task('html:inline:sources', [ 'scss:compile' ], function () {
+gulp.task('html:inline:sources', [ 'twig:compile', 'scss:compile' ], function () {
     return gulp.src('./src/*.html')
         .pipe(inlinesource({
             compress: false,
@@ -68,6 +69,43 @@ gulp.task('scss:compile', function () {
             addComment: false
         }))
         .pipe(gulp.dest("css/"));
+});
+
+gulp.task('twig:compile', function () {
+    return gulp.src('./src/email.twig')
+        .pipe(twig({
+            data: {
+                message: {
+                    greeting:       '',
+                    body:           '',
+                    goodbye:        '',
+                },
+                person: {
+                    title:          'Mr.',
+                    fullname:       'John Doe',
+                    position:       'CEO',
+                    company:        'Acme LLC',
+                },
+                contacts: {
+                    cell:           '+1(800)0000000',
+                    cell_pretty:    '+1 800 000 00 00',
+                    phone:          '+1(999)111222333',
+                    phone_pretty:   '+1 999 111 222 333',
+                    skype_name:     'acme',
+                },
+                links: {
+                    facebook:       'CodeCavePro',
+                    twitter:        'codecavepro',
+                    google_plus:    '+CodeCavePro',
+                    linkedin:       'codecavepro',
+                    vk:             'codecavepro',
+
+                    website:        'https://codecave.pro',
+                    website_pretty: 'www.codecave.pro',
+                }
+            }
+        }))
+        .pipe(gulp.dest('./src'));
 });
 
 gulp.task('watch', function () {

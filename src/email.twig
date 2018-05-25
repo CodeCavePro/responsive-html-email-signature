@@ -1,4 +1,4 @@
-
+{# email.twig #}
 <!DOCTYPE html>
 <html>
 
@@ -25,15 +25,15 @@
                   <tr>
                     <td>
                       <p>
-                        Hello Foo Bar
+                        {{ message.greeting|default('Hello Foo Bar') }}
                       </p>
                       <br>
                       <p>
-                        Text goes here
+                        {{ message.body|default('Text goes here') }}
                       </p>
                       <br>
                       <p>
-                        Best Regards,
+                        {{ message.goodbye|default('Best Regards,') }}
                       </p>
                     </td>
                   </tr>
@@ -59,20 +59,20 @@
                             <tr>
                               <td valign="top">
                                 <span class="black">
-                                  Mr. John Doe
+                                  {{ person.title }} {{ person.fullname }}
                                 </span>
                               </td>
                             </tr>
                             <tr>
                               <td valign="top">
-                                  CEO, Acme LLC
+                                  {{ person.position }}, {{ person.company }}
                               </td>
                             </tr>
                             <tr>
                               <td valign="top">
                                 Website:
-                                <a href="https://codecave.pro" target="_blank">
-                                  www.codecave.pro
+                                <a href="{{ links.website }}" target="_blank">
+                                  {{ links.website_pretty|default(links.website) }}
                                 </a>
                               </td>
                             </tr>
@@ -80,8 +80,8 @@
                             <tr>
                               <td valign="top">
                                 Cell:
-                                <a href="tel:+1(800)0000000" target="_blank">
-                                  +1 800 000 00 00
+                                <a href="tel:{{ contacts.cell }}" target="_blank">
+                                  {{ contacts.cell_pretty|default(contacts.cell) }}
                                 </a>
                               </td>
                             </tr>
@@ -89,8 +89,8 @@
                             <tr>
                               <td valign="top">
                                 Office:
-                                <a href="tel:+1(999)111222333" target="_blank">
-                                  +1 999 111 222 333
+                                <a href="tel:{{ contacts.phone }}" target="_blank">
+                                  {{ contacts.phone_pretty|default(contacts.phone) }}
                                 </a>
                               </td>
                             </tr>
@@ -98,29 +98,39 @@
                             <tr>
                               <td valign="top">
                                 Skype:
-                                <a href="skype:acme?call" target="_blank">
-                                  acme
+                                <a href="skype:{{ contacts.skype_name }}?call" target="_blank">
+                                  {{ contacts.skype_name }}
                                 </a>
                               </td>
                             </tr>
                             <tr height="40">
                               <td valign="bottom">
-                                                                <a href="https://facebook.com/CodeCavePro" class="social-icon" title="Facebook" target="_blank">
+                                {% if links.facebook %}
+                                <a href="https://facebook.com/{{ links.facebook }}" class="social-icon" title="Facebook" target="_blank">
                                   <img src="../images/facebook.png" class="image_inline" height="32" width="32" inline>
                                 </a>
-                                                                                                <a href="https://twitter.com/codecavepro" class="social-icon" title="Twitter" target="_blank">
+                                {% endif %}
+                                {% if links.twitter %}
+                                <a href="https://twitter.com/{{ links.twitter }}" class="social-icon" title="Twitter" target="_blank">
                                   <img src="../images/twitter.png" class="image_inline" height="32" width="32" inline>
                                 </a>
-                                                                                                <a href="https://vk.com/codecavepro" class="social-icon" title="VK" target="_blank">
+                                {% endif %}
+                                {% if links.vk %}
+                                <a href="https://vk.com/{{ links.vk }}" class="social-icon" title="VK" target="_blank">
                                   <img src="../images/vk.png" class="image_inline" height="32" width="32" inline>
                                 </a>
-                                                                                                <a href="https://plus.google.com/+CodeCavePro/" class="social-icon" title="Google+" target="_blank">
+                                {% endif %}
+                                {% if links.google_plus %}
+                                <a href="https://plus.google.com/{{ links.google_plus }}/" class="social-icon" title="Google+" target="_blank">
                                   <img src="../images/google-plus.png" class="image_inline" height="32" width="32" inline>
                                 </a>
-                                                                                                <a href="https://www.linkedin.com/company/codecavepro" class="social-icon" title="LinkedIn" target="_blank">
+                                {% endif %}
+                                {% if links.linkedin %}
+                                <a href="https://www.linkedin.com/company/{{ links.linkedin }}" class="social-icon" title="LinkedIn" target="_blank">
                                   <img src="../images/linkedin.png" class="image_inline" height="32" width="32" inline>
                                 </a>
-                                                              </td>
+                                {% endif %}
+                              </td>
                             </tr>
                           </tbody>
                         </table>
