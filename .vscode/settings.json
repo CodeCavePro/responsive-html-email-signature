@@ -1,6 +1,10 @@
 {
     "files.exclude": {
-        ".*-cache": true,
-        "node_modules": true,
-    }
+        ".*-cache":         true,
+        "node_modules":     true,
+        ".vscode/chrome":   true,
+    },
+
+    // Adding support for Live Server
+    "liveServer.settings.NoBrowser": true
 }
