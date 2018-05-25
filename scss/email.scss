@@ -1,10 +1,12 @@
 //colors
 $white: #ffffff;
-$black: #000000;
+$black: #3C3C3C;
 $color_gray: #999999;
 $color_light_gray: #f6f6f6;
 $color_blue: #3498db;
 $color_bluewood: #34495e;
+$max_width: 580px;
+
 
 //fonts
 $main_font: sans-serif;
@@ -18,12 +20,16 @@ img {
 	max-width: 100%;
 }
 body {
-	background-color: $color_light_gray;
 	font-family: $main_font;
-	-webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 	font-size: 14px;
 	line-height: 1.4;
+	/* Font smoothing start */
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-smooth: always;
+	transform: rotate(-0.0000000001deg);
+	text-shadow: 0 0 1px rgba(55,55,55,0.3);
+	/* Font smoothing end */
 	margin: 0;
 	padding: 0;
 	text-size-adjust: 100%;
@@ -37,6 +43,9 @@ table {
 		font-family: $main_font;
 		font-size: 14px;
 		vertical-align: top;
+		&[valign="bottom"] {
+			vertical-align: bottom;
+		}
 	}
 }
 
@@ -44,16 +53,13 @@ table {
     BODY & CONTAINER
 ------------------------------------- */
 .body {
-	background-color: $color_light_gray;
 	width: 100%;
 }
 /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
 .container {
 	display: block;
-	margin: 0 auto !important; /* makes it centered */
-	max-width: 580px;
-	padding: 10px;
-	width: 580px;
+	max-width: $max_width;
+	width: $max_width;
 }
 
 /* This should also be a block element, so that it will fill 100% of the .container */
@@ -62,8 +68,11 @@ table {
 	box-sizing: border-box;
 	display: block;
 	margin: 0 auto;
-	max-width: 580px;
-	padding: 10px;
+	max-width: $max_width;
+}
+
+.black {
+	color: $black !important
 }
 
 /* -------------------------------------
@@ -78,7 +87,6 @@ table {
 .wrapper {
 	//Instead of the line below you could use @include box-sizing($bs)
 	box-sizing: border-box;
-	padding: 20px;
 }
 .content-block {
 	padding-bottom: 10px;
@@ -87,12 +95,16 @@ table {
 .footer {
 	clear: both;
 	margin-top: 10px;
-	text-align: center;
+	text-align: left;
 	width: 100%;
 	td, p, span, a {
 		color: $color_gray;
-		font-size: 12px;
-		text-align: center;
+		font-size: 14px;
+		text-align: left;
+	}
+	a {
+		color: #009688;
+		text-decoration: none
 	}
 }
 
@@ -127,6 +139,9 @@ ul, ol, p {
 a {
 	color: $color_blue;
 	text-decoration: underline;
+	&.social-icon {
+		display: inline-block
+	}
 }
 
 /* -------------------------------------
@@ -221,6 +236,10 @@ hr {
 	border-bottom: 1px solid $color_light_gray;
 	margin: 20px 0;
 }
+
+/* -------------------------------------
+    PRESERVE THESE STYLES IN THE HEAD
+------------------------------------- */
 @media only screen and(max-width: 620px) {
 	table[class=body] {
 		h1 {
@@ -228,10 +247,10 @@ hr {
 			margin-bottom: 10px !important;
 		}
 		p, ul, ol, td, span, a {
-			font-size: 16px !important;
+			font-size: 14px !important;
 		}
 		.wrapper, .article {
-			padding: 10px !important;
+			padding: 10px 5px !important;
 		}
 		.content {
 			padding: 0 !important;
@@ -261,10 +280,12 @@ hr {
 		}
 	}
 }
-
-/* -------------------------------------
-    PRESERVE THESE STYLES IN THE HEAD
-------------------------------------- */
+@media only screen and(max-width: 320px) {
+	td.full-width {
+		width: 100%;
+		display: block;
+	}
+}
 @media all {
 	.ExternalClass {
 		width: 100%;

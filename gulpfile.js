@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
     inlinesource = require('gulp-inline-source'),
+    inlineImages = require('gulp-inline-images'),
     inlineCss = require('gulp-inline-css');
 
 gulp.task('default', [ 'html:prettify' ]);
@@ -22,7 +23,7 @@ gulp.task('html:prettify', [ 'html:inline:css' ], function () {
 });
 
 // Inline CSS rules in HTML file
-gulp.task('html:inline:css', [ 'html:inline:sources' ], function () {
+gulp.task('html:inline:css', [ 'html:inline:images', 'html:inline:sources' ], function () {
     return gulp.src([
             './*.html',
             '!./*-inlined.html'
@@ -33,6 +34,13 @@ gulp.task('html:inline:css', [ 'html:inline:sources' ], function () {
         .pipe(rename({
             suffix: "-inlined",
         }))
+        .pipe(gulp.dest('./'));
+});
+
+// Include base64-encoded images
+gulp.task('html:inline:images', function () {
+    return gulp.src('./src/*.html')
+        .pipe(inlineImages({/* options */}))
         .pipe(gulp.dest('./'));
 });
 

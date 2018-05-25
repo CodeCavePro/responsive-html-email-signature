@@ -1157,6 +1157,15 @@ gulp-inline-css@^3.3.0:
     plugin-error "^1.0.1"
     through2 "^2.0.3"
 
+gulp-inline-images@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/gulp-inline-images/-/gulp-inline-images-1.2.6.tgz#bcd3417077c5dd9be4ab8d9714eda664d2d5b9fa"
+  dependencies:
+    cheerio "^0.22.0"
+    gulp "^3.9.1"
+    gulp-util "^3.0.8"
+    through2 "^2.0.3"
+
 gulp-inline-source@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/gulp-inline-source/-/gulp-inline-source-3.1.0.tgz#fe7b94a3105d3523356ab4e639112fcb2cbfea52"
@@ -1210,7 +1219,7 @@ gulp-sourcemaps@^2.6.4:
     strip-bom-string "1.X"
     through2 "2.X"
 
-gulp-util@^3.0.0, gulp-util@~3.0.6:
+gulp-util@^3.0.0, gulp-util@^3.0.8, gulp-util@~3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
