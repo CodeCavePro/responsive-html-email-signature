@@ -1,0 +1,22 @@
+---
+message:
+  greeting: 'Здравствуйте ТакойТакойтович!'
+  body: 'Текст письма'
+  goodbye: 'С Уважением,'
+person:
+  title:
+  fullname: Василий Пупкин
+  position: Директор
+  company: ООО «Рога и Копыта»
+contacts:
+  cell: "+7 (495) 000 00 00"
+  phone: "+7 (495) 111 222 333"
+  skype_name: acme
+links:
+  facebook: CodeCavePro
+  twitter: codecavepro
+  google_plus: "+CodeCavePro"
+  linkedin: codecavepro
+  vk: codecavepro
+  website: https://codecave.pro
+  website_pretty: www.codecave.pro

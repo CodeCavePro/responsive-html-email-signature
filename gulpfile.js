@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     inlineCss = require('gulp-inline-css'),
     twig = require('gulp-twig'),
     yaml = require('js-yaml'),
-    fs = require('fs');
+    fs = require('fs'),
+    Path = require('path');
 
 gulp.task('default', [ 'html:prettify' ]);
 
@@ -73,13 +74,33 @@ gulp.task('scss:compile', function () {
         .pipe(gulp.dest("css/"));
 });
 
+function getFilenames(path, extension) {
+    return fs
+        .readdirSync(path)
+        .filter(
+            item =>
+                fs.statSync(Path.join(path, item)).isFile() &&
+                (extension === undefined || Path.extname(item) === extension)
+        )
+        .sort();
+}
+
 gulp.task('twig:compile', function () {
-    var email = yaml.safeLoad(fs.readFileSync('./src/email.yml', 'utf8'));
-    return gulp.src('./src/email.twig')
-        .pipe(twig({
-            data: email
-        }))
-        .pipe(gulp.dest('./src'));
+    var yamlFiles = getFilenames('./src', '.yml');
+    if (yamlFiles  === undefined || yamlFiles.length <= 0) return; // nothing to do!
+
+    yamlFiles.map(function(yamlFile) {
+        var suffix = '-' + yamlFile.replace('.yml', ''),
+            emailData = yaml.safeLoad(fs.readFileSync('./src/' + yamlFile, 'utf8'));
+        return gulp.src('./src/email.twig')
+            .pipe(twig({
+                data: emailData
+            }))
+            .pipe(rename({
+                suffix: suffix,
+            }))
+            .pipe(gulp.dest('./src'));
+    });
 });
 
 gulp.task('watch', function () {

@@ -1,4 +1,5 @@
 .*-cache/
 node_modules/
 css/
+src/*.html
 .vscode/chrome

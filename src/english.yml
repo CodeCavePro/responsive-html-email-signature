@@ -9,10 +9,8 @@ person:
   position: CEO
   company: Acme LLC
 contacts:
-  cell: "+1(800)0000000"
-  cell_pretty: "+1 800 000 00 00"
-  phone: "+1(999)111222333"
-  phone_pretty: "+1 999 111 222 333"
+  cell: "+1 (699) 000 00 00"
+  phone: "+1 (699) 111 222 333"
   skype_name: acme
 links:
   facebook: CodeCavePro

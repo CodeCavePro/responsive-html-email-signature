@@ -1,0 +1,22 @@
+---
+message:
+  greeting: 'Spett.le Sig. PincoPallino'
+  body: 'Il testo della mail'
+  goodbye: 'Distinti Saluti,'
+person:
+  title: Sig.
+  fullname: Mario Rossi
+  position: Direttore
+  company: Padre e figli S.R.L.
+contacts:
+  cell: "+1 (699) 000 00 00"
+  phone: "+1 (699) 111 222 333"
+  skype_name: acme
+links:
+  facebook: CodeCavePro
+  twitter: codecavepro
+  google_plus: "+CodeCavePro"
+  linkedin: codecavepro
+  vk: codecavepro
+  website: https://codecave.pro
+  website_pretty: www.codecave.pro

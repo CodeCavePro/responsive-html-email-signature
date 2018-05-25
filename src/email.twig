@@ -25,7 +25,7 @@
                   <tr>
                     <td>
                       <p>
-                        {{ message.greeting|default('Hello Foo Bar') }}
+                        {{ message.greeting|default('Hello FooBar') }}
                       </p>
                       <br>
                       <p>
@@ -80,8 +80,8 @@
                             <tr>
                               <td valign="top">
                                 Cell:
-                                <a href="tel:{{ contacts.cell }}" target="_blank">
-                                  {{ contacts.cell_pretty|default(contacts.cell) }}
+                                <a href="tel:{{ contacts.cell|replace({ '(': '', ')': '', ' ': '' }) }}" target="_blank">
+                                  {{ contacts.cell|default(contacts.cell) }}
                                 </a>
                               </td>
                             </tr>
@@ -89,8 +89,8 @@
                             <tr>
                               <td valign="top">
                                 Office:
-                                <a href="tel:{{ contacts.phone }}" target="_blank">
-                                  {{ contacts.phone_pretty|default(contacts.phone) }}
+                                <a href="tel:{{ contacts.phone|replace({ '(': '', ')': '', ' ': '' }) }}" target="_blank">
+                                  {{ contacts.phone|default(contacts.phone) }}
                                 </a>
                               </td>
                             </tr>
